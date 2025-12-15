@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/chess-icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Prevent flash of wrong theme -->
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+    
+    <!-- SEO Meta Tags -->
+    <title>MeetHub - Video Call Rooms</title>
+    <meta name="description" content="Free video call platform with multi-room management. Create a room, invite friends, and start video calls with no sign-up required." />
+    <meta name="keywords" content="video call, video meeting, online meeting, video conference, free video call" />
+    <meta name="author" content="yunkhngn" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://chess.yunkhngn.dev/" />
+    <meta property="og:title" content="MeetHub - Video Call Rooms" />
+    <meta property="og:description" content="Free video call platform with multi-room management. Create a room, invite friends, and start video calls." />
+    <meta property="og:image" content="https://chess.yunkhngn.dev/thumbnail.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://chess.yunkhngn.dev/" />
+    <meta property="twitter:title" content="MeetHub - Video Call Rooms" />
+    <meta property="twitter:description" content="Free video call platform with multi-room management. Create a room, invite friends, and start video calls." />
+    <meta property="twitter:image" content="https://chess.yunkhngn.dev/thumbnail.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
