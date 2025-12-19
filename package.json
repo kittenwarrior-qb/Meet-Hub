@@ -1,0 +1,14 @@
+{
+  "name": "video-call-app",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n client,server -c blue,green \"pnpm dev:client\" \"pnpm dev:server\"",
+    "dev:client": "pnpm --filter video-call-client dev",
+    "dev:server": "pnpm --filter video-call-server dev",
+    "build": "pnpm --filter video-call-client build",
+    "start": "pnpm --filter video-call-server start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

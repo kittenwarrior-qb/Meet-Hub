@@ -1,6 +1,6 @@
 # MeetHub - Caddyfile
 
-chess.yunkhngn.dev {
+meethub.quocbui.dev {
     # Backend API and WebSocket
     handle /socket.io/* {
         reverse_proxy backend:3002 {

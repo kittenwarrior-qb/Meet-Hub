@@ -8,7 +8,7 @@ services:
     ports:
       - "3080:80"
     networks:
-      - yunkhngn-website_app-network
+      - quocbui-website_app-network
     depends_on:
       - backend
 
@@ -23,12 +23,12 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3002
-      - CORS_ORIGIN=https://chess.yunkhngn.dev
+      - CORS_ORIGIN=https://meethub.quocbui.dev
     volumes:
       - ./pgn-data:/app/pgn
     networks:
-      - yunkhngn-website_app-network
+      - quocbui-website_app-network
 
 networks:
-  yunkhngn-website_app-network:
+  quocbui-website_app-network:
     external: true
