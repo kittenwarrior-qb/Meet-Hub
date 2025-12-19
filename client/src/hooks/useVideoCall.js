@@ -28,6 +28,7 @@ export function useVideoCall() {
 
   const peerConnections = useRef(new Map());
   const callbacksRef = useRef({});
+  const localStreamRef = useRef(null);
 
   // Initialize socket
   useEffect(() => {
@@ -182,10 +183,11 @@ export function useVideoCall() {
     const pc = new RTCPeerConnection(ICE_SERVERS);
     peerConnections.current.set(peerId, pc);
 
-    // Add local tracks
-    if (localStream) {
-      localStream.getTracks().forEach(track => {
-        pc.addTrack(track, localStream);
+    // Add local tracks from ref (always up-to-date)
+    const stream = localStreamRef.current;
+    if (stream) {
+      stream.getTracks().forEach(track => {
+        pc.addTrack(track, stream);
       });
     }
 
@@ -235,6 +237,7 @@ export function useVideoCall() {
   const startMedia = useCallback(async (video = true, audio = true) => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video, audio });
+      localStreamRef.current = stream;
       setLocalStream(stream);
       setVideoEnabled(video);
       setAudioEnabled(audio);
@@ -246,11 +249,12 @@ export function useVideoCall() {
   }, []);
 
   const stopMedia = useCallback(() => {
-    if (localStream) {
-      localStream.getTracks().forEach(track => track.stop());
+    if (localStreamRef.current) {
+      localStreamRef.current.getTracks().forEach(track => track.stop());
+      localStreamRef.current = null;
       setLocalStream(null);
     }
-  }, [localStream]);
+  }, []);
 
   const toggleAudio = useCallback(() => {
     if (localStream) {

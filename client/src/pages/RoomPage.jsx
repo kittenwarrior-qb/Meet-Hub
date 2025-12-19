@@ -4,8 +4,6 @@ import {
     Copy,
     Check,
     Link2,
-    Sun,
-    Moon,
     Loader2,
     LogIn,
     Users
@@ -28,7 +26,6 @@ export default function RoomPage() {
     const [copied, setCopied] = useState(false);
     const [showChat, setShowChat] = useState(false);
     const [mediaStarted, setMediaStarted] = useState(false);
-    const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
 
     const {
         connected,
@@ -49,11 +46,6 @@ export default function RoomPage() {
         toggleVideo,
         setCallbacks
     } = useVideoCall();
-
-    useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-    }, [theme]);
 
     // Check if need to show join form
     useEffect(() => {
@@ -144,10 +136,6 @@ export default function RoomPage() {
         } catch (err) {
             console.error('Failed to copy:', err);
         }
-    };
-
-    const toggleTheme = () => {
-        setTheme(prev => prev === 'dark' ? 'light' : 'dark');
     };
 
     const handleJoinSubmit = (e) => {
@@ -248,11 +236,7 @@ export default function RoomPage() {
                     <Users size={16} />
                     <span>{participants.filter(p => p.connected).length} in call</span>
                 </div>
-                <div className="header-right">
-                    <button className="btn btn-ghost btn-icon btn-sm" onClick={toggleTheme}>
-                        {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-                    </button>
-                </div>
+                <div className="header-right"></div>
             </header>
 
             {/* Main content */}
